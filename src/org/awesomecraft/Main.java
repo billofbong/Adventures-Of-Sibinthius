@@ -7,6 +7,6 @@ package org.awesomecraft;
  */
 public class Main {
     public static void main(String[] args) {
-        
+      new AdventuresOfSibinthius();  
     }
 }
