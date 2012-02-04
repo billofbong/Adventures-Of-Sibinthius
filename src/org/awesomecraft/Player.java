@@ -6,5 +6,5 @@ package org.awesomecraft;
  */
 public class Player {
     public static int level = 1;
-    public static int loc = 1;
+    public static double loc = 1;
 }
