@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.awesomecraft;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -62,6 +57,16 @@ public class AdventuresOfSibinthius extends JFrame {
                }
            });
            } if(Player.loc == 2) {
+                   for(int i = 1; right.getActionListeners().length > i; i++) {
+                       right.removeActionListener(right.getActionListeners()[i]);
+                       System.out.println("Rem right");
+                       break;
+                   }
+                   for(int i = 0; left.getActionListeners().length > i; i++) {
+                       left.removeActionListener(left.getActionListeners()[i]);
+                       System.out.println("Rem left");
+                       break;
+                   }
                    nar1.setText("You are now outside");
                    nar2.setText("the door. What now?");
                    forward.addActionListener(new ActionListener() {
