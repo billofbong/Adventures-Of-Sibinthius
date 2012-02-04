@@ -52,7 +52,10 @@ public class AdventuresOfSibinthius extends JFrame {
            right.addActionListener(new ActionListener() {
                @Override
                public void actionPerformed(ActionEvent e) {
-                   Player.loc++;
+                   Player.loc = 2;
+               }
+           });
+           } if(Player.loc == 2) {
                    nar1.setText("You pick the lock. You're");
                    nar2.setText("outside the door. What now?");
                    right.setText(rgt);
@@ -61,8 +64,6 @@ public class AdventuresOfSibinthius extends JFrame {
                    left.setText(lft);
                    back.setVisible(true);
                    forward.setVisible(true);
-               }
-           });
            }
         }
     }
