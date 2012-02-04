@@ -43,63 +43,28 @@ public class AdventuresOfSibinthius extends JFrame {
         while(shouldLoop) {
            if(Player.loc == 1) {
            left.setText("Do nothing");
-           left.addActionListener(new ActionListener() {
-               @Override
-               public void actionPerformed(ActionEvent e) {
-               nar1.setText("You are still in a dungeon.");
-           }
-           });
+           left.addActionListener(AList.q1l);
            right.setText("Pick the lock");
-           right.addActionListener(new ActionListener() {
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                   Player.loc = 2;
-               }
-           });
+           right.addActionListener(AList.q1r);
+           } if(Player.loc == 1.1) {
+               nar1.setText("You are still in a dungeon.");
            } if(Player.loc == 2) {
-                   for(int i = 1; right.getActionListeners().length > i; i++) {
-                       right.removeActionListener(right.getActionListeners()[i]);
-                       System.out.println("Rem right");
-                       break;
-                   }
-                   for(int i = 0; left.getActionListeners().length > i; i++) {
-                       left.removeActionListener(left.getActionListeners()[i]);
-                       System.out.println("Rem left");
-                       break;
-                   }
                    nar1.setText("You are now outside");
                    nar2.setText("the door. What now?");
-                   forward.addActionListener(new ActionListener() {
-                       @Override
-                       public void actionPerformed(ActionEvent e) {
-                           nar1.setText("You hear a guard.");
-                           nar2.setText("What do you do now?");
-                           Player.loc = 3;
-           }
-                   });
-                   left.addActionListener(new ActionListener() {
-                       @Override
-                       public void actionPerformed(ActionEvent e) {
-                           nar1.setText("You hear a guard.");
-                           nar2.setText("What do you do now?");
-                           Player.loc = 3;
-                       }
-                   });
-                   right.addActionListener(new ActionListener() {
-                       @Override
-                       public void actionPerformed(ActionEvent e) {
-                           nar1.setText("You hear a guard.");
-                           nar2.setText("What do you do now?");
-                           Player.loc = 3;
-                       }
-                   });
+                   left.removeActionListener(AList.q1l);
+                   right.removeActionListener(AList.q1r);
+                   forward.addActionListener(AList.q2g);
+                   left.addActionListener(AList.q2g);
+                   right.addActionListener(AList.q2g);
                    right.setText(rgt);
                    forward.setText(fwd);
                    back.setText(bck);
                    left.setText(lft);
                    forward.setVisible(true);
-           } if(Player.loc == 3) {
+           }   if(Player.loc == 3) {
                forward.setVisible(false);
+               nar1.setText("You hear a guard.");
+               nar2.setText("What do you do now?");
                right.setText("Sneak around him!");
                left.setText("Fight him!");
            }
