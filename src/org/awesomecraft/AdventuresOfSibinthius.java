@@ -60,27 +60,24 @@ public class AdventuresOfSibinthius extends JFrame {
                    forward.addActionListener(new ActionListener() {
                        @Override
                        public void actionPerformed(ActionEvent e) {
-                           System.out.println("Activated");
                            nar1.setText("You hear a guard.");
-                           nar2.setText("What do you do?");
-                       }
+                           nar2.setText("What do you do now?");
+           }
                    });
                    left.addActionListener(new ActionListener() {
                        @Override
                        public void actionPerformed(ActionEvent e) {
                            nar1.setText("You hear a guard.");
-                           nar2.setText("What do you do?");
+                           nar2.setText("What do you do now?");
                        }
                    });
                    right.addActionListener(new ActionListener() {
                        @Override
                        public void actionPerformed(ActionEvent e) {
                            nar1.setText("You hear a guard.");
-                           nar2.setText("What do you do?");
+                           nar2.setText("What do you do now?");
                        }
                    });
-                   nar1.setText("You pick the lock. You're");
-                   nar2.setText("outside the door. What now?");
                    right.setText(rgt);
                    forward.setText(fwd);
                    back.setText(bck);
