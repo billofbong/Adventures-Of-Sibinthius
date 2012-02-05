@@ -1,8 +1,6 @@
 package org.awesomecraft;
 
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,9 +13,13 @@ import javax.swing.JLabel;
 public class AdventuresOfSibinthius extends JFrame {
     private boolean loop1 = true;
     private boolean loop2 = true;
-    private Random gen = new Random();
-    private int fight = gen.nextInt(1);
-    private int sneak = gen.nextInt(1);
+    private static final Random gen = new Random();
+    public static int fight() {
+        return gen.nextInt(1);
+    }
+    public static int sneak() {
+        return gen.nextInt(1);
+    }
     private String fwd = "Go forward";
     private String rgt = "Go right";
     private String lft = "Go left";
@@ -26,8 +28,8 @@ public class AdventuresOfSibinthius extends JFrame {
     JButton back = new JButton("Go Back");
     JButton left = new JButton("Go Left");
     JButton right = new JButton("Go Right");
-    JLabel nar1 = new JLabel("You wake up in a dungeon.");
-    JLabel nar2 = new JLabel("What do you do?");
+    static JLabel nar1 = new JLabel("You wake up in a dungeon.");
+    static JLabel nar2 = new JLabel("What do you do?");
     public AdventuresOfSibinthius() {
         try {
         Player.loc = Double.valueOf(SaveLoad.load("/Users/Will/Sibinthius.bin").toString());
@@ -98,6 +100,29 @@ public class AdventuresOfSibinthius extends JFrame {
                nar2.setText("What do you do now?");
                right.setText("Sneak around him!");
                left.setText("Fight him!");
+               if(loop2) {
+                   forward.removeActionListener(AList.q2g);
+                   left.removeActionListener(AList.q2g);
+                   right.removeActionListener(AList.q2g);
+                   right.addActionListener(AList.q3r);
+                   left.addActionListener(AList.q3l);
+                   loop2 = false;
+               }
+               if(Player.loc == 4) {
+                   nar1.setText("You sneak past the guard and");
+                   nar2.setText("through the door. What now?");
+               } if(Player.loc == 4.5) {
+                   nar1.setText("You show yourself!.");
+                   nar2.setText("You must now fight the guard!");
+                   if(!loop2) {
+                   left.removeActionListener(AList.q3r);
+                   right.removeActionListener(AList.q3l);
+                   left.addActionListener(AList.q4l);
+                   right.addActionListener(AList.q4r);
+                   left.setText("Stab");
+                   right.setText("Slash");
+                   }
+               }
            }
         }
     }

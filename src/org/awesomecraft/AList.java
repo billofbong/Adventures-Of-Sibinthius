@@ -31,5 +31,37 @@ public class AList {
             Player.loc = 3;
         }
     };
+    public static ActionListener q3r = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+                Player.loc = 4;
+        }
+    };
+    public static ActionListener q3l = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Player.loc = 4.5;
+        }
+    };
+    public static ActionListener q4r = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if(AdventuresOfSibinthius.fight() == 1) {
+                npcs.basicGuardHP--;
+                AdventuresOfSibinthius.nar1.setText("Successful hit!");
+                AdventuresOfSibinthius.nar2.setText("");
+            } else {
+                AdventuresOfSibinthius.nar1.setText("Unsuccessful hit!");
+                AdventuresOfSibinthius.nar2.setText("");
+            }
+        }
+    };
+    public static ActionListener q4l = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Player.loc = 4.5;
+        }
+    };
+    public static NPCs npcs;
+        }
     
-}
