@@ -50,9 +50,12 @@ public class AdventuresOfSibinthius extends JFrame {
            forward.setVisible(false);
            back.setVisible(false);
            left.setText("Do nothing");
-           left.addActionListener(AList.q1l);
            right.setText("Pick the lock");
+           if(loop2) {
+           left.addActionListener(AList.q1l);
            right.addActionListener(AList.q1r);
+           loop2 = false;
+           }
            } if(Player.loc == 1.1) {
                nar1.setText("You are still in a dungeon.");
            } if(Player.loc == 2) {
@@ -66,12 +69,14 @@ public class AdventuresOfSibinthius extends JFrame {
                        System.err.println("Failed to save game");
                    }
                    loop1 = false;
-                   }
+                   } if(!loop2) {
                    left.removeActionListener(AList.q1l);
                    right.removeActionListener(AList.q1r);
                    forward.addActionListener(AList.q2g);
                    left.addActionListener(AList.q2g);
                    right.addActionListener(AList.q2g);
+                   loop2 = true;
+                   }
                    right.setText(rgt);
                    forward.setText(fwd);
                    back.setText(bck);
@@ -88,6 +93,7 @@ public class AdventuresOfSibinthius extends JFrame {
                    loop1 = true;
                    }
                forward.setVisible(false);
+               back.setVisible(false);
                nar1.setText("You hear a guard.");
                nar2.setText("What do you do now?");
                right.setText("Sneak around him!");
