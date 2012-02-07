@@ -43,25 +43,28 @@ public class AList {
             Player.loc = 4.5;
         }
     };
-    public static ActionListener q4r = new ActionListener() {
+    public static ActionListener restart = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if(AdventuresOfSibinthius.fight() == 1) {
-                npcs.basicGuardHP--;
-                AdventuresOfSibinthius.nar1.setText("Successful hit!");
-                AdventuresOfSibinthius.nar2.setText("");
+            Player.loc = 1;
+            
+        }
+    };
+    public static ActionListener q4g = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if(AdventuresOfSibinthius.getRandom().nextInt(2) == 1) {
+                AdventuresOfSibinthius.nar2.setText("That was a successful hit!");
+                q4BG--;
+                AdventuresOfSibinthius.HPleft.setText(new String().valueOf(q4BG) + " hits to go!");
+                    if(q4BG == 0) {
+                    Player.loc = 5;
+                }
             } else {
-                AdventuresOfSibinthius.nar1.setText("Unsuccessful hit!");
-                AdventuresOfSibinthius.nar2.setText("");
+                AdventuresOfSibinthius.nar2.setText("That was an unsuccessful hit!");
             }
         }
     };
-    public static ActionListener q4l = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            Player.loc = 4.5;
-        }
-    };
-    public static NPCs npcs;
+    public static int q4BG = NPCHP.BASICGUARD.getHP();
         }
     

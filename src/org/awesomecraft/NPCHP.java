@@ -8,8 +8,15 @@ package org.awesomecraft;
  *
  * @author Will
  */
-public class NPCs {
+public enum NPCHP {
     
-    public int basicGuardHP = 3;
+    BASICGUARD(3);
+    private int HP;
+    private NPCHP(int i) {
+        HP = i;
+    }
+    public int getHP() {
+        return HP;
+    }
     
 }

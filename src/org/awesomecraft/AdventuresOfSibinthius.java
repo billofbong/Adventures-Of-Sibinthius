@@ -13,12 +13,9 @@ import javax.swing.JLabel;
 public class AdventuresOfSibinthius extends JFrame {
     private boolean loop1 = true;
     private boolean loop2 = true;
-    private static final Random gen = new Random();
-    public static int fight() {
-        return gen.nextInt(1);
-    }
-    public static int sneak() {
-        return gen.nextInt(1);
+    private static Random gen = new Random();
+    public static Random getRandom() {
+        return gen;
     }
     private String fwd = "Go forward";
     private String rgt = "Go right";
@@ -28,8 +25,9 @@ public class AdventuresOfSibinthius extends JFrame {
     JButton back = new JButton("Go Back");
     JButton left = new JButton("Go Left");
     JButton right = new JButton("Go Right");
-    static JLabel nar1 = new JLabel("You wake up in a dungeon.");
-    static JLabel nar2 = new JLabel("What do you do?");
+    public static JLabel nar1 = new JLabel("You wake up in a dungeon.");
+    public static JLabel nar2 = new JLabel("What do you do?");
+    public static JLabel HPleft = new JLabel();
     public AdventuresOfSibinthius() {
         try {
         Player.loc = Double.valueOf(SaveLoad.load("/Users/Will/Sibinthius.bin").toString());
@@ -45,12 +43,18 @@ public class AdventuresOfSibinthius extends JFrame {
         add(left);
         add(right);
         add(back);
+        add(HPleft);
         setSize(205, 170);
         setVisible(true);
         while(true) {
            if(Player.loc == 1) {
+           HPleft.setVisible(false);
+           right.setVisible(true);
+           left.setVisible(true);
            forward.setVisible(false);
            back.setVisible(false);
+           nar1.setText("You wake up in a dungeon.");
+           nar2.setText("What do you do?");
            left.setText("Do nothing");
            right.setText("Pick the lock");
            if(loop2) {
@@ -99,7 +103,7 @@ public class AdventuresOfSibinthius extends JFrame {
                nar1.setText("You hear a guard.");
                nar2.setText("What do you do now?");
                right.setText("Sneak around him!");
-               left.setText("Fight him!");
+               left.setText("Scream 'I am a walrus'!");
                if(loop2) {
                    forward.removeActionListener(AList.q2g);
                    left.removeActionListener(AList.q2g);
@@ -108,22 +112,33 @@ public class AdventuresOfSibinthius extends JFrame {
                    left.addActionListener(AList.q3l);
                    loop2 = false;
                }
+           } 
                if(Player.loc == 4) {
                    nar1.setText("You sneak past the guard and");
                    nar2.setText("through the door. What now?");
                } if(Player.loc == 4.5) {
-                   nar1.setText("You show yourself!.");
-                   nar2.setText("You must now fight the guard!");
-                   if(!loop2) {
-                   left.removeActionListener(AList.q3r);
-                   right.removeActionListener(AList.q3l);
-                   left.addActionListener(AList.q4l);
-                   right.addActionListener(AList.q4r);
-                   left.setText("Stab");
                    right.setText("Slash");
+                   left.setText("Stab");
+                   HPleft.setVisible(true);
+                   right.setVisible(true);
+                   if(!loop2) {
+                   HPleft.setText("3 hits to go!");
+                   nar1.setText("You show yourself!");
+                   nar2.setText("You must now fight him!");
+                   left.removeActionListener(AList.q3l);
+                   right.removeActionListener(AList.q3r);
+                   left.addActionListener(AList.q4g);
+                   right.addActionListener(AList.q4g);
+                   loop2 = true;
+                   } 
+               } if(Player.loc == 5) {
+                   if(loop2) {
+                   left.removeActionListener(AList.q4g);
+                   right.removeActionListener(AList.q4g);
                    }
+                   nar1.setText("You killed the guard.");
+                   nar2.setText("You are outside. What now?");
                }
-           }
         }
     }
 }
