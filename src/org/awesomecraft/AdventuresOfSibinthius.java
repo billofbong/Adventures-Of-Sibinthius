@@ -11,6 +11,7 @@ import javax.swing.JLabel;
  * @author Will Wright
  */
 public class AdventuresOfSibinthius extends JFrame {
+    public static int damage = 1;
     private boolean loop1 = true;
     private boolean loop2 = true;
     private static Random gen = new Random();
