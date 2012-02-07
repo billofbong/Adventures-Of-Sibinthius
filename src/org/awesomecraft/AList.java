@@ -56,13 +56,27 @@ public class AList {
             if(AdventuresOfSibinthius.getRandom().nextInt(2) == 1) {
                 AdventuresOfSibinthius.nar2.setText("That was a successful hit!");
                 q4BG--;
-                AdventuresOfSibinthius.HPleft.setText(new String().valueOf(q4BG) + " hits to go!");
+                AdventuresOfSibinthius.nar3.setText(new String().valueOf(q4BG) + " hits to go!");
                     if(q4BG == 0) {
                     Player.loc = 5;
                 }
             } else {
                 AdventuresOfSibinthius.nar2.setText("That was an unsuccessful hit!");
             }
+        }
+    };
+    public static ActionListener q5r = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Player.loc = 6;
+            
+        }
+    };
+    public static ActionListener q6f = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Player.loc = 7;
+            
         }
     };
     public static int q4BG = NPCHP.BASICGUARD.getHP();

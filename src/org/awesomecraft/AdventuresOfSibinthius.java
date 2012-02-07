@@ -27,7 +27,7 @@ public class AdventuresOfSibinthius extends JFrame {
     JButton right = new JButton("Go Right");
     public static JLabel nar1 = new JLabel("You wake up in a dungeon.");
     public static JLabel nar2 = new JLabel("What do you do?");
-    public static JLabel HPleft = new JLabel();
+    public static JLabel nar3 = new JLabel();
     public AdventuresOfSibinthius() {
         try {
         Player.loc = Double.valueOf(SaveLoad.load("/Users/Will/Sibinthius.bin").toString());
@@ -43,12 +43,12 @@ public class AdventuresOfSibinthius extends JFrame {
         add(left);
         add(right);
         add(back);
-        add(HPleft);
+        add(nar3);
         setSize(205, 170);
         setVisible(true);
         while(true) {
            if(Player.loc == 1) {
-           HPleft.setVisible(false);
+           nar3.setVisible(false);
            right.setVisible(true);
            left.setVisible(true);
            forward.setVisible(false);
@@ -119,10 +119,10 @@ public class AdventuresOfSibinthius extends JFrame {
                } if(Player.loc == 4.5) {
                    right.setText("Slash");
                    left.setText("Stab");
-                   HPleft.setVisible(true);
+                   nar3.setVisible(true);
                    right.setVisible(true);
                    if(!loop2) {
-                   HPleft.setText("3 hits to go!");
+                   nar3.setText("3 hits to go!");
                    nar1.setText("You show yourself!");
                    nar2.setText("You must now fight him!");
                    left.removeActionListener(AList.q3l);
@@ -132,12 +132,55 @@ public class AdventuresOfSibinthius extends JFrame {
                    loop2 = true;
                    } 
                } if(Player.loc == 5) {
+                   if(loop1) {
+                       try {
+                   SaveLoad.save(Player.loc, "/Users/Will/Sibinthius.bin");
+                   System.out.println("Saved game at location " + Player.loc + ".");
+                   } catch(Exception ex) {
+                       System.err.println("Failed to save game");
+                   }
+                   loop1 = false;
+                   }
                    if(loop2) {
                    left.removeActionListener(AList.q4g);
                    right.removeActionListener(AList.q4g);
+                   left.setVisible(false);
+                   forward.setVisible(false);
+                   back.setVisible(false);
+                   right.setText("Continue");
+                   right.addActionListener(AList.q5r);
+                   loop2 = false;
                    }
-                   nar1.setText("You killed the guard.");
-                   nar2.setText("You are outside. What now?");
+                   nar1.setText("You killed the guard and");
+                   nar2.setText("picked up an iron dagger!");
+                   nar3.setText("Iron Dagger damage: 3");
+               } if(Player.loc == 6) {
+                   nar1.setText("You are in a city.");
+                   nar2.setText("What do you do?");
+                   forward.setVisible(true);
+                   right.setVisible(true);
+                   left.setVisible(true);
+                   right.setText("Talk to someone");
+                   left.setText("Find some food");
+                   forward.setText("Kill someone");
+                   nar3.setVisible(false);
+                   if(!loop2) {
+                       right.removeActionListener(AList.q5r);
+                       forward.addActionListener(AList.q6f);
+                   }
+               } if(Player.loc == 7) {
+                   forward.setVisible(false);
+                   right.setVisible(false);
+                   left.setText("Continue");
+                   nar1.setText("You try to kill someone.");
+                   nar2.setText("The guards arrest you.");
+                   if(loop2) {
+                   loop2 = false;
+                   }
+                   if(!loop2) {
+                   left.addActionListener(AList.restart); 
+                   loop2 = true;   
+                   }
                }
         }
     }

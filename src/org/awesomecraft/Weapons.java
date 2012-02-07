@@ -10,7 +10,7 @@ package org.awesomecraft;
  */
 public enum Weapons {
     
-    FISTS(1);
+    FISTS(1), IRONDAGGER(3);
     
     private int damage;
     
