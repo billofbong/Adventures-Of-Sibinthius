@@ -15,6 +15,10 @@ public enum NPCHP {
     private NPCHP(int i) {
         HP = i;
     }
+    /**
+     * Returns the HP.
+     * @return HP 
+     */
     public int getHP() {
         return HP;
     }

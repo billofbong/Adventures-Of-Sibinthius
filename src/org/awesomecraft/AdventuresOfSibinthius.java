@@ -11,10 +11,17 @@ import javax.swing.JLabel;
  * @author Will Wright
  */
 public class AdventuresOfSibinthius extends JFrame {
+    /**
+     * Determines the damage done by the player
+     */
     public static int damage = 1;
     private boolean loop1 = true;
     private boolean loop2 = true;
     private static Random gen = new Random();
+    /**
+     * Returns a random for use in other classes
+     * @return a random 
+     */
     public static Random getRandom() {
         return gen;
     }
@@ -59,8 +66,10 @@ public class AdventuresOfSibinthius extends JFrame {
            left.setText("Do nothing");
            right.setText("Pick the lock");
            if(loop2) {
+           left.removeActionListener(AList.q6f);
            left.addActionListener(AList.q1l);
            right.addActionListener(AList.q1r);
+           left.removeActionListener(AList.restart);
            loop2 = false;
            }
            } if(Player.loc == 1.1) {
